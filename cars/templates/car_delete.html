@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <div class="center">
+        <form method="post">
+            {% csrf_token %}
+            <h2>Excluir Tarefa</h2>
+            <p>Tem certeza de que deseja excluir "{{ object.MODEL }}"?</p>
+            <input type="submit" class="btn btn-danger" value="Excluir">
+            <a href="{% url 'cars_list' %}">
+                <button type="button" class="btn btn-warning">Cancelar</button>
+            </a>
+        </form>
+</div>
+{% endblock %}
