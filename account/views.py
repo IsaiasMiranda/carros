@@ -3,13 +3,15 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 
+
 class Register(CreateView):
     model = UserCreationForm
     template_name = 'register.html'
     form_class = UserCreationForm
     success_url = '/login/'
 
-def LoginAuth(request):
+
+def login_auth(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -18,17 +20,18 @@ def LoginAuth(request):
             login(request, user)
             return redirect('cars_list')
         else:
-            loginForm = AuthenticationForm()
+            login_form = AuthenticationForm()
     else:
-        loginForm = AuthenticationForm()
+        login_form = AuthenticationForm()
     return render(
         request,
         'login.html',
         {
-            'loginForm': loginForm,
+            'loginForm': login_form,
         }
     )
 
-def LogoutAuth(request):
+
+def logout_auth(request):
     logout(request)
     return redirect('cars_list')
